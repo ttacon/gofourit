@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"github.com/bsm/redislock"
-	"github.com/go-redis/redis/v8"
 )
 
 // redisSource is our implementation for a Redis based RemoteSource.
@@ -17,7 +16,7 @@ type redisSource struct {
 
 // NewRedisRemoteSource returns a new RemoteSource based on the given redis
 // client.
-func NewRedisRemoteSource(client *redis.Client) RemoteSource {
+func NewRedisRemoteSource(client redislock.RedisClient) RemoteSource {
 	return &redisSource{
 		locker: redislock.New(client),
 	}
